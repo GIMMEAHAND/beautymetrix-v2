@@ -441,47 +441,27 @@
                     <option value="Twitter">Twitter/X</option>
                 </select>
             </div>
-
-            <div class="form-group">
+<div class="form-group">
                 <label>Content Type</label>
                 <select id="contentType">
                     <option value="">Select type</option>
-                    <option value="Tutorial">Tutorial</option>
-                    <option value="Transformation">Transformation</option>
-                    <option value="Review">Review</option>
-                    <option value="Product Demo">Product Demo</option>
-                    <option value="Behind the Scenes">Behind the Scenes</option>
-                    <option value="Before/After">Before/After</option>
+                    <option value="Reel">Reel</option>
+                    <option value="Post">Static Post</option>
+                    <option value="Story">Story</option>
+                    <option value="Carousel">Carousel</option>
                 </select>
             </div>
-
-            <div class="form-group">
-                <label>Views</label>
-                <input type="number" id="contentViews" placeholder="How many people saw it">
-                <div class="helper-text">Found in your platform insights</div>
-            </div>
-
-            <div class="form-group">
-                <label>Engagement (Likes + Comments)</label>
-                <input type="number" id="contentEngagement" placeholder="Add likes and comments together">
-                <div class="helper-text">Example: 150 likes + 30 comments = 180</div>
-            </div>
-
-            <div class="form-group">
-                <label>Link Clicks (Optional)</label>
-                <input type="number" id="contentClicks" placeholder="Only if tracking a link">
-                <div class="helper-text">Leave blank if no link to track</div>
-            </div>
-
-            <button class="btn" onclick="saveContent()">Add Content</button>
+            <div id="contentInputArea"></div>
         </div>
         <div class="card">
             <h2>Your Tracked Content</h2>
             <div id="contentList"></div>
         </div>
-    </div> <div id="performance" class="tab-content">
+    </div>
+
+    <div id="performance" class="tab-content">
         <div class="card">
-            <h3>Performance Insights <span class="info-icon" onclick="alert('Reach: Views\nEngagement: Likes/Comments\nConversion: Leads!')">ⓘ</span></h3>
+            <h3>Performance Insights</h3>
             <canvas id="performanceChart"></canvas>
         </div>
 
@@ -504,21 +484,19 @@
             
             <div id="conversionResult" style="margin-top: 15px; text-align: center; font-weight: bold; color: #be185d;"></div>
         </div>
-
-        <div class="card">
-            <h2>Content Type Analysis</h2>
-            <div id="contentTypeAnalysis"></div>
-        </div>
     </div>
 
     <script>
+        // Initialize data
         let platformsData = JSON.parse(localStorage.getItem('platformsData')) || {};
         let contentData = JSON.parse(localStorage.getItem('contentData')) || [];
 
         function switchTab(tabName) {
+            // Remove active classes
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             
+            // Add active classes
             if (event && event.target) {
                 event.target.classList.add('active');
             }
@@ -527,6 +505,7 @@
                 targetContent.classList.add('active');
             }
 
+            // Run tab-specific loaders
             if (tabName === 'platforms') loadPlatforms();
             if (tabName === 'content') loadContent();
             if (tabName === 'performance') loadPerformance();
