@@ -492,6 +492,20 @@
         let contentData = JSON.parse(localStorage.getItem('contentData')) || [];
 
         // Tab switching
+function switchTab(tabName) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    
+    event.target.classList.add('active');
+    document.getElementById(tabName).classList.add('active');
+
+    // ADD THIS LINE BELOW:
+    gtag('event', 'tab_view', { 'tab_name': tabName });
+    
+    if (tabName === 'platforms') loadPlatforms();
+    if (tabName === 'content') loadContent();
+    if (tabName === 'performance') loadPerformance();
+}
         function switchTab(tabName) {
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
