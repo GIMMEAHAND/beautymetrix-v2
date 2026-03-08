@@ -488,43 +488,28 @@
         <h3>Performance Insights <span class="info-icon" onclick="alert('Reach: Total views.\nEngagement: Interactions.\nConversion: Actual bookings!')">ⓘ</span></h3>
         <canvas id="performanceChart"></canvas>
     </div>
+<div id="performance" class="tab-content">
+    <div class="card">
+        <h3>Performance Insights <span class="info-icon" onclick="alert('Reach: Total views.\nEngagement: Interactions.\nConversion: Turning clicks into clients!')">ⓘ</span></h3>
+        <canvas id="performanceChart"></canvas>
+    </div>
 
     <div class="card" style="background: #fff5f7; border: 2px solid #f472b6; margin-top: 20px;">
-        <h3 style="color: #be185d; margin-top: 0;">💰 Win Rate Calculator</h3>
-        <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;">Enter your Profile Visits and Bookings to see your real conversion.</p>
+        <h3 style="color: #be185d; margin-top: 0;">💰 Content Conversion Calculator</h3>
+        <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;">Turn views into business. Enter your weekly link clicks and inquiries below.</p>
         
         <div style="display: flex; gap: 10px; margin-bottom: 15px;">
             <div style="flex: 1;">
-                <label style="font-size: 0.7rem; font-weight: bold; display: block; margin-bottom: 5px;">Profile Visits</label>
+                <label style="font-size: 0.7rem; font-weight: bold; display: block; margin-bottom: 5px;">Link Clicks</label>
                 <input type="number" id="calcVisits" placeholder="e.g. 100" style="width: 90%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
             </div>
             <div style="flex: 1;">
-                <label style="font-size: 0.7rem; font-weight: bold; display: block; margin-bottom: 5px;">Bookings</label>
+                <label style="font-size: 0.7rem; font-weight: bold; display: block; margin-bottom: 5px;">Inquiries</label>
                 <input type="number" id="calcBookings" placeholder="e.g. 5" style="width: 90%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
             </div>
         </div>
-        <button onclick="calculateConversion()" style="width: 100%; background: #be185d; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem;">Calculate My Win Rate</button>
         
-        <div id="conversionResult" style="margin-top: 15px; text-align: center; font-weight: bold; color: #be185d; display: none;">
-            </div>
-    </div>
-</div>
-    <div class="card" style="background: #fdf2f8; border: 1px solid #f472b6;">
-        <h3 style="color: #be185d;">💰 Conversion Calculator</h3>
-        <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;">Turn your attention into income. Track your "Win Rate" here.</p>
-        
-        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-            <div style="flex: 1;">
-                <label style="font-size: 0.7rem; font-weight: bold;">Profile Visits</label>
-                <input type="number" id="calcVisits" placeholder="e.g. 100" style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #ddd;">
-            </div>
-            <div style="flex: 1;">
-                <label style="font-size: 0.7rem; font-weight: bold;">Bookings</label>
-                <input type="number" id="calcBookings" placeholder="e.g. 5" style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #ddd;">
-            </div>
-        </div>
-        
-        <button onclick="calculateConversion()" style="width: 100%; background: #be185d; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-weight: bold;">Calculate My Win Rate</button>
+        <button onclick="calculateConversion()" style="width: 100%; background: #be185d; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem;">Calculate My Conversion Rate</button>
         
         <div id="conversionResult" style="margin-top: 15px; text-align: center; font-weight: bold; color: #be185d; display: none;">
             </div>
@@ -550,12 +535,14 @@ function switchTab(tabName) {
     event.target.classList.add('active');
     document.getElementById(tabName).classList.add('active');
 
-    // ADD THIS LINE BELOW:
+    // Tracking event
     gtag('event', 'tab_view', { 'tab_name': tabName });
     
     if (tabName === 'platforms') loadPlatforms();
     if (tabName === 'content') loadContent();
     if (tabName === 'performance') loadPerformance();
+} // <--- THIS BRACKET WAS MISSING! It closes the switchTab "room"
+
 // --- CALCULATOR ROOM ---
 function calculateConversion() {
     const visits = document.getElementById('calcVisits').value;
@@ -572,9 +559,9 @@ function calculateConversion() {
         
         resultDiv.innerHTML = `<div style="padding: 10px; background: white; border-radius: 5px;">${message}<br><span style="font-size: 0.7rem; font-weight: normal; color: #666;">(Goal: Aim for 3-5% for healthy growth)</span></div>`;
     } else {
-        alert("Please enter numbers for both visits and bookings!");
+        alert("Please enter numbers for both visits and inquiries!");
     }
-} // <--- This bracket CLOSES the calculator "room"
+} // <--- Closes the Calculator Room
 
 // --- TAB SWITCHING ROOM ---
 function switchTab(tabName) {
@@ -800,13 +787,15 @@ function switchTab(tabName) {
                 contentTypeAnalysis.innerHTML = Object.entries(typeStats)
                     .sort((a, b) => (b[1].engagement / b[1].count) - (a[1].engagement / a[1].count))
                     .map(([type, stats]) => {
-                        const avgEngagement = (stats.engagement / stats.count).toFixed(0);
-                        return `
-                            <div class="platform-item">
-                                <span class="platform-name">${type} (${stats.count} posts)</span>
-                                <span class="platform-count">${avgEngagement} avg engagement</span>
-                            </div>
-                        `;
+                       const avgLikes = (stats.likes / stats.count).toFixed(0);
+const avgComments = (stats.comments / stats.count).toFixed(0);
+
+return `
+    <div class="platform-item">
+        <span class="platform-name">${type} (${stats.count} posts)</span>
+        <span class="platform-count">❤️ ${avgLikes} | 💬 ${avgComments} (Avg)</span>
+    </div>
+`;
                     }).join('');
             }
         }
