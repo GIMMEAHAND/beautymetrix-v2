@@ -1,783 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="manifest" href="manifest.json">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-<meta name="theme-color" content="#ffffff">
-    <link rel="manifest" href="manifest.json">
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YMGMYVN5GD"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-YMGMYVN5GD');
-</script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Beauty MetriXs - Vanity That Tracks</title>
-    
-    <!-- PWA Meta Tags -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#59c5c5">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Beauty MetriXs">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty MetriXs</title>
     <style>
-        .info-icon {
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    background: #be185d;
-    color: white;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 18px;
-    font-size: 12px;
-    cursor: pointer;
-    margin-left: 5px;
-    vertical-align: middle;
-}
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-            background: #fafafa;
-            color: #000000;
-            line-height: 1.6;
-        }
-
-        .header {
-            background: #000000;
-            color: #ffffff;
-            padding: 20px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .header h1 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .header p {
-            font-size: 14px;
-            color: #999999;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-        }
-
-        .tabs {
-            display: flex;
-            background: #ffffff;
-            border-bottom: 1px solid #e0e0e0;
-            overflow-x: auto;
-        }
-
-        .tab {
-            flex: 1;
-            padding: 15px;
-            text-align: center;
-            background: #ffffff;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            color: #666666;
-            transition: all 0.3s;
-            border-bottom: 3px solid transparent;
-        }
-
-        .tab.active {
-            background: #ffffff;
-            color: #000000;
-            border-bottom: 3px solid #59c5c5;
-        }
-
-        .tab:hover {
-            color: #000000;
-        }
-
-        .tab-content {
-            display: none;
-            padding: 20px;
-            animation: fadeIn 0.3s;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .card {
-            background: #ffffff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-        }
-
-        .card h2 {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #000000;
-            border-bottom: 1px solid #e0e0e0;
-            padding-bottom: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #000000;
-            font-size: 14px;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-            background: #ffffff;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: #59c5c5;
-            box-shadow: 0 0 0 3px rgba(89, 197, 197, 0.08);
-        }
-
-        .helper-text {
-            font-size: 12px;
-            color: #999;
-            margin-top: 5px;
-            font-style: italic;
-        }
-
-        .btn {
-            background: #000000;
-            color: #ffffff;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            width: 100%;
-            transition: all 0.3s;
-            margin-top: 10px;
-        }
-
-        .btn:hover {
-            background: #333333;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .stat-card {
-            background: #000000;
-            color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-top: 3px solid #59c5c5;
-        }
-
-        .stat-card h3 {
-            font-size: 14px;
-            font-weight: 400;
-            margin-bottom: 8px;
-            color: #999999;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .stat-card .number {
-            font-size: 36px;
-            font-weight: 700;
-            color: #59c5c5;
-        }
-
-        .platform-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px;
-            background: #fafafa;
-            border-radius: 4px;
-            margin-bottom: 8px;
-            border-left: 3px solid #e0e0e0;
-            transition: border-color 0.3s;
-        }
-
-        .platform-item:hover {
-            border-left-color: #59c5c5;
-        }
-
-        .platform-name {
-            font-weight: 600;
-            color: #000000;
-        }
-
-        .platform-count {
-            color: #000000;
-            font-weight: 700;
-        }
-
-        .content-item {
-            background: #ffffff;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            border: 1px solid #e0e0e0;
-            border-left: 3px solid #000000;
-            transition: all 0.3s;
-        }
-
-        .content-item:hover {
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            border-left-color: #59c5c5;
-        }
-
-        .content-name {
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 5px;
-        }
-
-        .content-meta {
-            font-size: 12px;
-            color: #999;
-            margin-bottom: 8px;
-        }
-
-        .content-stats {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .stat-badge {
-            background: #f5f5f5;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 600;
-            color: #666666;
-            border: 1px solid #e0e0e0;
-        }
-
-        .engagement-rate {
-            background: #000000;
-            color: #59c5c5;
-            border-color: #000000;
-        }
-
-        .delete-btn {
-            background: #ff4444;
-            color: #ffffff;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            margin-top: 10px;
-            transition: background 0.3s;
-        }
-
-        .delete-btn:hover {
-            background: #cc0000;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            color: #999;
-        }
-
-        .empty-state svg {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 15px;
-            opacity: 0.3;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 20px;
-            }
-            
-            .tab {
-                font-size: 12px;
-                padding: 12px 8px;
-            }
-
-            .stat-card .number {
-                font-size: 28px;
-            }
-        }
+        :root { --pink: #f472b6; --dark-pink: #be185d; --bg: #fff1f2; }
+        body { font-family: -apple-system, sans-serif; background: var(--bg); margin: 0; padding: 20px; color: #333; }
+        .header { text-align: center; margin-bottom: 20px; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; background: white; padding: 5px; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .tab { flex: 1; padding: 12px; text-align: center; border-radius: 8px; cursor: pointer; font-weight: bold; color: #666; transition: 0.3s; }
+        .tab.active { background: var(--pink); color: white; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        h2, h3 { margin-top: 0; color: var(--dark-pink); }
+        input, select { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: var(--dark-pink); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .platform-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; }
+        .empty-state { text-align: center; color: #999; padding: 20px; }
     </style>
 </head>
 <body>
+
     <div class="header">
-<h1>Beauty Metrixs™</h1>
-        <p>Vanity That Tracks</p>
+        <h1>✨ Beauty MetriXs</h1>
     </div>
 
     <div class="tabs">
-        <button class="tab active" onclick="switchTab('platforms')">My Platforms</button>
-        <button class="tab" onclick="switchTab('content')">My Content</button>
-        <button class="tab" onclick="switchTab('performance')">Performance Data</button>
+        <div class="tab active" onclick="switchTab('platforms')">Platforms</div>
+        <div class="tab" onclick="switchTab('content')">Content</div>
+        <div class="tab" onclick="switchTab('performance')">Insights</div>
     </div>
 
-    <!-- MY PLATFORMS TAB -->
     <div id="platforms" class="tab-content active">
         <div class="card">
-            <h2>Add Your Platforms</h2>
-            <div class="form-group">
-                <label>Instagram</label>
-                <input type="number" id="instagram" placeholder="Follower count">
-            </div>
-            <div class="form-group">
-                <label>TikTok</label>
-                <input type="number" id="tiktok" placeholder="Follower count">
-            </div>
-            <div class="form-group">
-                <label>Facebook</label>
-                <input type="number" id="facebook" placeholder="Follower count">
-            </div>
-            <div class="form-group">
-                <label>Pinterest</label>
-                <input type="number" id="pinterest" placeholder="Follower count">
-            </div>
-            <div class="form-group">
-                <label>YouTube</label>
-                <input type="number" id="youtube" placeholder="Subscriber count">
-            </div>
-            <div class="form-group">
-                <label>Twitter/X</label>
-                <input type="number" id="twitter" placeholder="Follower count">
-            </div>
-            <button class="btn" onclick="savePlatforms()">Save Platforms</button>
+            <h2>Add Platform</h2>
+            <input type="text" id="platformName" placeholder="e.g. Instagram">
+            <button onclick="addPlatform()">Add Platform</button>
         </div>
-
-        <div class="stat-card">
-            <h3>TOTAL REACH</h3>
-            <div class="number" id="totalReach">0</div>
-        </div>
-
         <div class="card">
             <h2>Your Platforms</h2>
-            <div id="platformsList"></div>
+            <div id="platformList"></div>
         </div>
     </div>
 
-    <!-- MY CONTENT TAB -->
     <div id="content" class="tab-content">
         <div class="card">
-            <h2>Track Your Content</h2>
-            
-            <div class="form-group">
-                <label>Content Name</label>
-                <input type="text" id="contentName" placeholder="e.g., Gel removal tutorial">
-            </div>
-
-            <div class="form-group">
-                <label>URL</label>
-                <input type="url" id="contentUrl" placeholder="https://...">
-            </div>
-
-            <div class="form-group">
-                <label>Platform</label>
-                <select id="contentPlatform">
-                    <option value="">Select platform</option>
-                    <option value="Instagram">Instagram</option>
-                    <option value="TikTok">TikTok</option>
-                    <option value="Facebook">Facebook</option>
-                    <option value="YouTube">YouTube</option>
-                    <option value="Pinterest">Pinterest</option>
-                    <option value="Twitter">Twitter/X</option>
-                </select>
-            </div>
-<div class="form-group">
-                <label>Content Type</label>
-                <select id="contentType">
-                    <option value="">Select type</option>
-                    <option value="Reel">Reel</option>
-                    <option value="Post">Static Post</option>
-                    <option value="Story">Story</option>
-                    <option value="Carousel">Carousel</option>
-                </select>
-            </div>
-            <div id="contentInputArea"></div>
+            <h2>Track Content</h2>
+            <select id="platformSelect"></select>
+            <select id="contentType">
+                <option value="Reel">Reel</option>
+                <option value="Post">Post</option>
+                <option value="Story">Story</option>
+            </select>
+            <input type="number" id="views" placeholder="Views">
+            <input type="number" id="likes" placeholder="Likes">
+            <input type="number" id="comments" placeholder="Comments">
+            <button onclick="addContent()">Save Post</button>
         </div>
         <div class="card">
-            <h2>Your Tracked Content</h2>
+            <h2>Recent History</h2>
             <div id="contentList"></div>
         </div>
     </div>
 
     <div id="performance" class="tab-content">
         <div class="card">
-            <h3>Performance Insights</h3>
-            <canvas id="performanceChart"></canvas>
+            <h3>💰 Conversion Calculator</h3>
+            <p style="font-size: 0.8rem; color: #666;">Clicks to Inquiries</p>
+            <input type="number" id="calcVisits" placeholder="Link Clicks">
+            <input type="number" id="calcBookings" placeholder="Inquiries">
+            <button onclick="calculateConversion()">Calculate</button>
+            <div id="conversionResult" style="margin-top:15px; text-align:center; font-weight:bold;"></div>
         </div>
-
-        <div class="card" style="background: #fff5f7; border: 2px solid #f472b6; margin-top: 20px;">
-            <h3 style="color: #be185d; margin-top: 0;">💰 Content Conversion</h3>
-            <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;">Turn clicks into clients.</p>
-            
-            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-                <div style="flex: 1;">
-                    <label style="font-size: 0.7rem; font-weight: bold; display: block; margin-bottom: 5px;">Link Clicks</label>
-                    <input type="number" id="calcVisits" placeholder="0" style="width: 90%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
-                </div>
-                <div style="flex: 1;">
-                    <label style="font-size: 0.7rem; font-weight: bold; display: block; margin-bottom: 5px;">Inquiries</label>
-                    <input type="number" id="calcBookings" placeholder="0" style="width: 90%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
-                </div>
-            </div>
-            
-            <button onclick="calculateConversion()" style="width: 100%; background: #be185d; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold;">Calculate</button>
-            
-            <div id="conversionResult" style="margin-top: 15px; text-align: center; font-weight: bold; color: #be185d;"></div>
+        <div class="card">
+            <h3>Type Analysis</h3>
+            <div id="contentTypeAnalysis"></div>
         </div>
     </div>
 
     <script>
-        // Initialize data
-        let platformsData = JSON.parse(localStorage.getItem('platformsData')) || {};
-        let contentData = JSON.parse(localStorage.getItem('contentData')) || [];
+        // Data Handling
+        let platforms = JSON.parse(localStorage.getItem('beauty_platforms')) || [];
+        let content = JSON.parse(localStorage.getItem('beauty_content')) || [];
 
-        function switchTab(tabName) {
-            // Remove active classes
+        function switchTab(tabId) {
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            
-            // Add active classes
-            if (event && event.target) {
-                event.target.classList.add('active');
-            }
-            const targetContent = document.getElementById(tabName);
-            if (targetContent) {
-                targetContent.classList.add('active');
-            }
+            event.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+            if(tabId === 'performance') updateAnalysis();
+        }
 
-            // Run tab-specific loaders
-            if (tabName === 'platforms') loadPlatforms();
-            if (tabName === 'content') loadContent();
-            if (tabName === 'performance') loadPerformance();
+        function addPlatform() {
+            const name = document.getElementById('platformName').value;
+            if(!name) return;
+            platforms.push(name);
+            localStorage.setItem('beauty_platforms', JSON.stringify(platforms));
+            document.getElementById('platformName').value = '';
+            renderPlatforms();
+        }
+
+        function renderPlatforms() {
+            const list = document.getElementById('platformList');
+            const select = document.getElementById('platformSelect');
+            list.innerHTML = platforms.map(p => `<div class="platform-item"><span>${p}</span></div>`).join('') || '<div class="empty-state">No platforms added</div>';
+            select.innerHTML = platforms.map(p => `<option value="${p}">${p}</option>`).join('');
+        }
+
+        function addContent() {
+            const data = {
+                platform: document.getElementById('platformSelect').value,
+                type: document.getElementById('contentType').value,
+                views: parseInt(document.getElementById('views').value) || 0,
+                likes: parseInt(document.getElementById('likes').value) || 0,
+                comments: parseInt(document.getElementById('comments').value) || 0,
+                date: new Date().toLocaleDateString()
+            };
+            content.push(data);
+            localStorage.setItem('beauty_content', JSON.stringify(content));
+            renderContent();
+            alert("Saved!");
+        }
+
+        function renderContent() {
+            const list = document.getElementById('contentList');
+            list.innerHTML = content.slice().reverse().map(item => `
+                <div class="platform-item">
+                    <span>${item.type} (${item.platform})</span>
+                    <span>❤️ ${item.likes}</span>
+                </div>
+            `).join('') || '<div class="empty-state">No content tracked</div>';
         }
 
         function calculateConversion() {
-            const visits = document.getElementById('calcVisits').value;
-            const bookings = document.getElementById('calcBookings').value;
-            const resultDiv = document.getElementById('conversionResult');
-            
-            if (visits > 0 && bookings >= 0) {
-                const rate = ((bookings / visits) * 100).toFixed(1);
-                resultDiv.style.display = 'block';
-                
-                let message = `Your Conversion Rate is ${rate}%!`;
-                if (rate < 2) message += " 📈 Try a clearer Call-to-Action!";
-                else if (rate >= 5) message += " 🔥 You're killing it!";
-                
-                resultDiv.innerHTML = `<div style="padding: 10px; background: white; border-radius: 5px; border: 1px solid #f472b6;">${message}<br><span style="font-size: 0.7rem; font-weight: normal; color: #666;">(Goal: Aim for 3-5% for healthy growth)</span></div>`;
-            } else {
-                alert("Please enter numbers for both visits and inquiries!");
-            }
-        }
-    // DO NOT CLOSE SCRIPT TAG HERE IF OTHER FUNCTIONS (loadPlatforms, etc.) ARE BELOW THIS
-// --- TAB SWITCHING ROOM ---
-function switchTab(tabName) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-   
-// Tracking event
-    gtag('event', 'tab_view', { 'tab_name': tabName });
-
-    if (tabName === 'platforms') loadPlatforms();
-    if (tabName === 'content') loadContent();
-    if (tabName === 'performance') loadPerformance();
-} // <--- THIS IS THE FINAL END OF THE SWITCHTAB SECTION 
-            event.target.classList.add('active');
-            document.getElementById(tabName).classList.add('active');
-            
-            if (tabName === 'platforms') loadPlatforms();
-            if (tabName === 'content') loadContent();
-            if (tabName === 'performance') loadPerformance();
-        }
-
-        // Save Platforms
-        function savePlatforms() {
-            platformsData = {
-                instagram: parseInt(document.getElementById('instagram').value) || 0,
-                tiktok: parseInt(document.getElementById('tiktok').value) || 0,
-                facebook: parseInt(document.getElementById('facebook').value) || 0,
-                pinterest: parseInt(document.getElementById('pinterest').value) || 0,
-                youtube: parseInt(document.getElementById('youtube').value) || 0,
-                twitter: parseInt(document.getElementById('twitter').value) || 0
-            };
-            
-            localStorage.setItem('platformsData', JSON.stringify(platformsData));
-            loadPlatforms();
-            alert('Platforms saved!');
-        }
-
-        // Load Platforms
-        function loadPlatforms() {
-            // Load saved values into inputs
-            document.getElementById('instagram').value = platformsData.instagram || '';
-            document.getElementById('tiktok').value = platformsData.tiktok || '';
-            document.getElementById('facebook').value = platformsData.facebook || '';
-            document.getElementById('pinterest').value = platformsData.pinterest || '';
-            document.getElementById('youtube').value = platformsData.youtube || '';
-            document.getElementById('twitter').value = platformsData.twitter || '';
-
-            // Calculate total reach
-            const totalReach = Object.values(platformsData).reduce((sum, val) => sum + (val || 0), 0);
-            document.getElementById('totalReach').textContent = totalReach.toLocaleString();
-
-            // Display platforms list
-            const platformsList = document.getElementById('platformsList');
-            platformsList.innerHTML = '';
-
-            const platformNames = {
-                instagram: 'Instagram',
-                tiktok: 'TikTok',
-                facebook: 'Facebook',
-                pinterest: 'Pinterest',
-                youtube: 'YouTube',
-                twitter: 'Twitter/X'
-            };
-
-            for (let [key, value] of Object.entries(platformsData)) {
-                if (value > 0) {
-                    platformsList.innerHTML += `
-                        <div class="platform-item">
-                            <span class="platform-name">${platformNames[key]}</span>
-                            <span class="platform-count">${value.toLocaleString()}</span>
-                        </div>
-                    `;
-                }
-            }
-
-            if (platformsList.innerHTML === '') {
-                platformsList.innerHTML = '<div class="empty-state">No platforms added yet</div>';
+            const v = document.getElementById('calcVisits').value;
+            const b = document.getElementById('calcBookings').value;
+            const res = document.getElementById('conversionResult');
+            if(v > 0) {
+                const rate = ((b/v)*100).toFixed(1);
+                res.innerHTML = `Rate: ${rate}% ${rate > 3 ? '🔥' : '📈'}`;
             }
         }
 
-        // Save Content
-        function saveContent() {
-            const name = document.getElementById('contentName').value;
-            const url = document.getElementById('contentUrl').value;
-            const platform = document.getElementById('contentPlatform').value;
-            const type = document.getElementById('contentType').value;
-            const views = parseInt(document.getElementById('contentViews').value) || 0;
-            const engagement = parseInt(document.getElementById('contentEngagement').value) || 0;
-            const clicks = parseInt(document.getElementById('contentClicks').value) || 0;
-
-            if (!name || !platform || !type) {
-                alert('Please fill in name, platform, and content type');
-                return;
-            }
-
-            const newContent = {
-                id: Date.now(),
-                name,
-                url,
-                platform,
-                type,
-                views,
-                engagement,
-                clicks,
-                engagementRate: views > 0 ? ((engagement / views) * 100).toFixed(2) : 0,
-                clickRate: views > 0 && clicks > 0 ? ((clicks / views) * 100).toFixed(2) : 0
-            };
-
-            contentData.push(newContent);
-            localStorage.setItem('contentData', JSON.stringify(contentData));
-
-            // Clear form
-            document.getElementById('contentName').value = '';
-            document.getElementById('contentUrl').value = '';
-            document.getElementById('contentPlatform').value = '';
-            document.getElementById('contentType').value = '';
-            document.getElementById('contentViews').value = '';
-            document.getElementById('contentEngagement').value = '';
-            document.getElementById('contentClicks').value = '';
-
-            loadContent();
-            alert('Content added!');
-        }
-
-        // Load Content
-        function loadContent() {
-            const contentList = document.getElementById('contentList');
-            
-            if (contentData.length === 0) {
-                contentList.innerHTML = '<div class="empty-state">No content tracked yet</div>';
-                return;
-            }
-
-            contentList.innerHTML = contentData.map(item => `
-                <div class="content-item">
-                    <div class="content-name">${item.name}</div>
-                    <div class="content-meta">${item.platform} • ${item.type}</div>
-                    <div class="content-stats">
-                        <span class="stat-badge">Views: ${item.views.toLocaleString()}</span>
-                        <span class="stat-badge">Engagement: ${item.engagement.toLocaleString()}</span>
-                        ${item.clicks > 0 ? `<span class="stat-badge">Clicks: ${item.clicks}</span>` : ''}
-                        <span class="stat-badge engagement-rate">${item.engagementRate}% Eng. Rate</span>
-                        ${item.clickRate > 0 ? `<span class="stat-badge engagement-rate">${item.clickRate}% Click Rate</span>` : ''}
-                    </div>
-                    <button class="delete-btn" onclick="deleteContent(${item.id})">Delete</button>
+        function updateAnalysis() {
+            const analysis = document.getElementById('contentTypeAnalysis');
+            const stats = {};
+            content.forEach(item => {
+                if(!stats[item.type]) stats[item.type] = { count: 0, likes: 0 };
+                stats[item.type].count++;
+                stats[item.type].likes += item.likes;
+            });
+            analysis.innerHTML = Object.entries(stats).map(([type, s]) => `
+                <div class="platform-item">
+                    <span>${type} (${s.count} posts)</span>
+                    <span>Avg ❤️: ${(s.likes/s.count).toFixed(0)}</span>
                 </div>
-            `).join('');
+            `).join('') || '<div class="empty-state">Add content to see data</div>';
         }
 
-        // Delete Content
-        function deleteContent(id) {
-            if (confirm('Delete this content?')) {
-                contentData = contentData.filter(item => item.id !== id);
-                localStorage.setItem('contentData', JSON.stringify(contentData));
-                loadContent();
-            }
-        }
-
-        // Load Performance
-        function loadPerformance() {
-            // Top 5 Content
-            const topContent = document.getElementById('topContent');
-            const sortedByEngagement = [...contentData].sort((a, b) => b.engagement - a.engagement).slice(0, 5);
-            
-            if (sortedByEngagement.length === 0) {
-                topContent.innerHTML = '<div class="empty-state">Track content to see performance</div>';
-            } else {
-                topContent.innerHTML = sortedByEngagement.map((item, index) => `
-                    <div class="content-item">
-                        <div class="content-name">#${index + 1} ${item.name}</div>
-                        <div class="content-meta">${item.platform} • ${item.type}</div>
-                        <div class="content-stats">
-                            <span class="stat-badge">Views: ${item.views.toLocaleString()}</span>
-                            <span class="stat-badge">Engagement: ${item.engagement.toLocaleString()}</span>
-                            <span class="stat-badge engagement-rate">${item.engagementRate}% Rate</span>
-                        </div>
-                    </div>
-                `).join('');
-            }
-
-            // Platform Performance
-            const platformPerformance = document.getElementById('platformPerformance');
-            const platformStats = {};
-            
-            contentData.forEach(item => {
-                if (!platformStats[item.platform]) {
-                    platformStats[item.platform] = { views: 0, engagement: 0, count: 0 };
-                }
-                platformStats[item.platform].views += item.views;
-                platformStats[item.platform].engagement += item.engagement;
-                platformStats[item.platform].count += 1;
-            });
-
-            if (Object.keys(platformStats).length === 0) {
-                platformPerformance.innerHTML = '<div class="empty-state">Track content to see platform performance</div>';
-            } else {
-                platformPerformance.innerHTML = Object.entries(platformStats)
-                    .sort((a, b) => b[1].engagement - a[1].engagement)
-                    .map(([platform, stats]) => `
-                        <div class="platform-item">
-                            <span class="platform-name">${platform} (${stats.count} posts)</span>
-                            <span class="platform-count">${stats.engagement.toLocaleString()} total engagement</span>
-                        </div>
-                    `).join('');
-            }
-
-            // Content Type Analysis
-            const contentTypeAnalysis = document.getElementById('contentTypeAnalysis');
-            const typeStats = {};
-            
-            contentData.forEach(item => {
-                if (!typeStats[item.type]) {
-                    typeStats[item.type] = { views: 0, engagement: 0, count: 0 };
-                }
-                typeStats[item.type].views += item.views;
-                typeStats[item.type].engagement += item.engagement;
-                typeStats[item.type].count += 1;
-            });
-
-            if (Object.keys(typeStats).length === 0) {
-                contentTypeAnalysis.innerHTML = '<div class="empty-state">Track content to see type analysis</div>';
-            } else {
-                contentTypeAnalysis.innerHTML = Object.entries(typeStats)
-                    .sort((a, b) => (b[1].engagement / b[1].count) - (a[1].engagement / a[1].count))
-                    .map(([type, stats]) => {
-                       const avgLikes = (stats.likes / stats.count).toFixed(0);
-const avgComments = (stats.comments / stats.count).toFixed(0);
-
-return `
-    <div class="platform-item">
-        <span class="platform-name">${type} (${stats.count} posts)</span>
-        <span class="platform-count">❤️ ${avgLikes} | 💬 ${avgComments} (Avg)</span>
-    </div>
-`;
-                    }).join('');
-            }
-        }
-
-        // Load initial data
-        loadPlatforms();
+        // Initialize
+        renderPlatforms();
+        renderContent();
     </script>
-
-    <!-- PWA Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('service-worker.js')
-                    .then(registration => console.log('Service Worker registered'))
-                    .catch(error => console.log('Service Worker registration failed:', error));
+</body>
+</html>
             });
         }
     </script>
