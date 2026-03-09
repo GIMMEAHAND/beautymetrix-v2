@@ -4,100 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beauty MetriXs</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        :root { --pink: #f472b6; --dark-pink: #be185d; --bg: #fff1f2; }
-        body { font-family: -apple-system, sans-serif; background: var(--bg); margin: 0; padding: 20px; color: #333; }
-        .header { text-align: center; margin-bottom: 20px; }
-        .tabs { display: flex; gap: 10px; margin-bottom: 20px; background: white; padding: 5px; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .tab { flex: 1; padding: 12px; text-align: center; border-radius: 8px; cursor: pointer; font-weight: bold; color: #666; transition: 0.3s; }
-        .tab.active { background: var(--pink); color: white; }
+        /* YOUR BLACK, WHITE, AND TEAL THEME */
+        :root { --teal: #0d9488; --dark: #111827; --bg: #ffffff; --gray: #f3f4f6; }
+        
+        body { font-family: -apple-system, sans-serif; background-color: var(--bg); margin: 0; padding: 20px; color: var(--dark); }
+        .header { text-align: center; margin-bottom: 30px; border-bottom: 3px solid var(--dark); padding-bottom: 10px; }
+        
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; background: var(--gray); padding: 5px; border-radius: 8px; }
+        .tab { flex: 1; padding: 12px; text-align: center; cursor: pointer; border-radius: 6px; font-weight: bold; color: #666; transition: 0.2s; }
+        .tab.active { background: var(--dark); color: white; }
+        
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; }
-        h2, h3 { margin-top: 0; color: var(--dark-pink); }
-        input, select { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; background: var(--dark-pink); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
-        .platform-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; }
-        .empty-state { text-align: center; color: #999; padding: 20px; }
+        
+        .card { background: white; padding: 20px; border-radius: 12px; border: 2px solid var(--dark); margin-bottom: 20px; box-shadow: 4px 4px 0px var(--teal); }
+        
+        h2, h3 { color: var(--dark); margin-top: 0; text-transform: uppercase; letter-spacing: 1px; }
+        
+        input, select { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid var(--dark); border-radius: 6px; font-size: 1rem; }
+        
+        button { width: 100%; padding: 12px; background: var(--teal); color: white; border: 2px solid var(--dark); border-radius: 6px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        button:hover { background: var(--dark); }
+        
+        .info-icon { cursor: pointer; color: var(--teal); font-size: 1rem; margin-left: 5px; border: 1px solid var(--teal); padding: 0 5px; border-radius: 50%; }
+        
+        .result-box { margin-top: 15px; padding: 15px; background: var(--gray); border: 2px dashed var(--teal); text-align: center; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>✨ Beauty MetriXs</h1>
+        <h1>Beauty MetriXs</h1>
     </div>
 
     <div class="tabs">
         <div class="tab active" onclick="switchTab('platforms')">Platforms</div>
         <div class="tab" onclick="switchTab('content')">Content</div>
-        <div class="tab" onclick="switchTab('performance')">Insights</div>
+        <div class="tab" onclick="switchTab('performance')">Performance</div>
     </div>
 
     <div id="platforms" class="tab-content active">
         <div class="card">
             <h2>Add Platform</h2>
-            <input type="text" id="platformName" placeholder="e.g. Instagram">
+            <input type="text" id="platformName" placeholder="Platform (e.g. TikTok)">
             <button onclick="addPlatform()">Add Platform</button>
         </div>
-        <div class="card">
-            <h2>Your Platforms</h2>
-            <div id="platformList"></div>
-        </div>
+        <div id="platformList"></div>
     </div>
 
     <div id="content" class="tab-content">
         <div class="card">
-            <h2>Track Content</h2>
+            <h2>Track New Content</h2>
             <select id="platformSelect"></select>
             <select id="contentType">
                 <option value="Reel">Reel</option>
-                <option value="Post">Post</option>
+                <option value="Post">Static Post</option>
                 <option value="Story">Story</option>
             </select>
             <input type="number" id="views" placeholder="Views">
             <input type="number" id="likes" placeholder="Likes">
             <input type="number" id="comments" placeholder="Comments">
-            <button onclick="addContent()">Save Post</button>
+            <button onclick="addContent()">Save Entry</button>
         </div>
-        <div class="card">
-            <h2>Recent History</h2>
-            <div id="contentList"></div>
-        </div>
+        <div id="contentList"></div>
     </div>
 
     <div id="performance" class="tab-content">
         <div class="card">
-            <h3>💰 Conversion Calculator</h3>
-            <p style="font-size: 0.8rem; color: #666;">Clicks to Inquiries</p>
-            <input type="number" id="calcVisits" placeholder="Link Clicks">
-            <input type="number" id="calcBookings" placeholder="Inquiries">
-            <button onclick="calculateConversion()">Calculate</button>
-            <div id="conversionResult" style="margin-top:15px; text-align:center; font-weight:bold;"></div>
+            <h3>Performance Insights <span class="info-icon" onclick="alert('Reach: Views\nEngagement: Likes/Comments\nConversion: Leads!')">ⓘ</span></h3>
+            <canvas id="performanceChart"></canvas>
         </div>
+
         <div class="card">
-            <h3>Type Analysis</h3>
-            <div id="contentTypeAnalysis"></div>
+            <h3>💰 Content Conversion</h3>
+            <div style="display: flex; gap: 10px;">
+                <input type="number" id="calcVisits" placeholder="Clicks">
+                <input type="number" id="calcBookings" placeholder="Inquiries">
+            </div>
+            <button onclick="calculateConversion()">Calculate Rate</button>
+            <div id="conversionResult" class="result-box" style="display:none;"></div>
         </div>
     </div>
 
     <script>
-        // Data Handling
-        let platforms = JSON.parse(localStorage.getItem('beauty_platforms')) || [];
-        let content = JSON.parse(localStorage.getItem('beauty_content')) || [];
+        let platforms = JSON.parse(localStorage.getItem('bm_platforms')) || [];
+        let contentData = JSON.parse(localStorage.getItem('bm_content')) || [];
 
         function switchTab(tabId) {
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            
+            const activeTab = event ? event.currentTarget : document.querySelector(`[onclick="switchTab('${tabId}')"]`);
+            activeTab.classList.add('active');
             document.getElementById(tabId).classList.add('active');
-            if(tabId === 'performance') updateAnalysis();
+            
+            if(tabId === 'performance') renderChart();
         }
 
         function addPlatform() {
             const name = document.getElementById('platformName').value;
             if(!name) return;
             platforms.push(name);
-            localStorage.setItem('beauty_platforms', JSON.stringify(platforms));
+            localStorage.setItem('bm_platforms', JSON.stringify(platforms));
             document.getElementById('platformName').value = '';
             renderPlatforms();
         }
@@ -105,33 +115,32 @@
         function renderPlatforms() {
             const list = document.getElementById('platformList');
             const select = document.getElementById('platformSelect');
-            list.innerHTML = platforms.map(p => `<div class="platform-item"><span>${p}</span></div>`).join('') || '<div class="empty-state">No platforms added</div>';
+            list.innerHTML = platforms.map(p => `<div class="card" style="padding:10px;"><strong>${p}</strong></div>`).join('');
             select.innerHTML = platforms.map(p => `<option value="${p}">${p}</option>`).join('');
         }
 
         function addContent() {
-            const data = {
+            const entry = {
                 platform: document.getElementById('platformSelect').value,
                 type: document.getElementById('contentType').value,
                 views: parseInt(document.getElementById('views').value) || 0,
                 likes: parseInt(document.getElementById('likes').value) || 0,
-                comments: parseInt(document.getElementById('comments').value) || 0,
-                date: new Date().toLocaleDateString()
+                comments: parseInt(document.getElementById('comments').value) || 0
             };
-            content.push(data);
-            localStorage.setItem('beauty_content', JSON.stringify(content));
+            contentData.push(entry);
+            localStorage.setItem('bm_content', JSON.stringify(contentData));
+            alert("Success!");
             renderContent();
-            alert("Saved!");
         }
 
         function renderContent() {
             const list = document.getElementById('contentList');
-            list.innerHTML = content.slice().reverse().map(item => `
-                <div class="platform-item">
-                    <span>${item.type} (${item.platform})</span>
-                    <span>❤️ ${item.likes}</span>
+            list.innerHTML = contentData.slice().reverse().map(c => `
+                <div class="card">
+                    <strong>${c.type}</strong> - ${c.platform}<br>
+                    👁️ ${c.views} | ❤️ ${c.likes} | 💬 ${c.comments}
                 </div>
-            `).join('') || '<div class="empty-state">No content tracked</div>';
+            `).join('');
         }
 
         function calculateConversion() {
@@ -140,27 +149,28 @@
             const res = document.getElementById('conversionResult');
             if(v > 0) {
                 const rate = ((b/v)*100).toFixed(1);
-                res.innerHTML = `Rate: ${rate}% ${rate > 3 ? '🔥' : '📈'}`;
+                res.style.display = 'block';
+                res.innerHTML = `CONVERSION RATE: ${rate}% ${rate >= 3 ? '✅' : '📈'}`;
             }
         }
 
-        function updateAnalysis() {
-            const analysis = document.getElementById('contentTypeAnalysis');
-            const stats = {};
-            content.forEach(item => {
-                if(!stats[item.type]) stats[item.type] = { count: 0, likes: 0 };
-                stats[item.type].count++;
-                stats[item.type].likes += item.likes;
+        let myChart;
+        function renderChart() {
+            const ctx = document.getElementById('performanceChart').getContext('2d');
+            if(myChart) myChart.destroy();
+            myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: contentData.map((_, i) => i + 1),
+                    datasets: [{
+                        label: 'Likes',
+                        data: contentData.map(c => c.likes),
+                        backgroundColor: '#0d9488'
+                    }]
+                }
             });
-            analysis.innerHTML = Object.entries(stats).map(([type, s]) => `
-                <div class="platform-item">
-                    <span>${type} (${s.count} posts)</span>
-                    <span>Avg ❤️: ${(s.likes/s.count).toFixed(0)}</span>
-                </div>
-            `).join('') || '<div class="empty-state">Add content to see data</div>';
         }
 
-        // Initialize
         renderPlatforms();
         renderContent();
     </script>
